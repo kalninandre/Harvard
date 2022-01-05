@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+
+        <title>Trivia!</title>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                let correct_button = document.querySelector(".correct");
+                let incorrect_buttons = document.querySelectorAll(".incorrect");
+                let first_message = document.getElementById("first_message");
+
+                correct_button.addEventListener('click', function() {
+                    correct_button.style.backgroundColor = "green";
+                    first_message.innerHTML = "Correct";
+                })
+
+                for (let i = 0; i < incorrect_buttons.length; i++)
+                {
+                    incorrect_buttons[i].addEventListener('click', function() {
+                        incorrect_buttons[i].style.backgroundColor = "red";
+                        first_message.innerHTML = "Incorrect";
+                    })
+                }
+
+                document.getElementById("confirm").addEventListener('click', function(){
+                    let input = document.getElementById("box").value;
+                    if (input == "Switzerland")
+                    {
+                        document.getElementById("second_message").innerHTML = "Correct";
+                        document.getElementById("box").style.color = 'green';
+                    }
+                    else
+                    {
+                        document.getElementById("second_message").innerHTML = "Incorrect";
+                        document.getElementById("box").style.color = 'red';
+                    }
+                })
+            });
+        </script>
+    </head>
+
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <h3>What is the approximate ratio of people to sheep in New Zeland</h3>
+                <form>
+                    <input type ="button" class = incorrect value ="6 people per 1 sheep">
+                    <input type ="button" class = incorrect value ="3 people per 1 sheep">
+                    <input type ="button" class = incorrect value ="1 people per 1 sheep">
+                    <input type ="button" class = incorrect value ="1 person per 3 sheep">
+                    <input type ="button" class = correct value ="1 person per 6 sheep">
+                    <p id = "first_message"></p>
+                </form>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <h3>In which country is it illegal to own only one guinea pig, as a lone guinea pig might get lonely?</h3>
+                <form onSubmit ="return false">
+                    <input type ="text" id = "box">
+                    <input type ="button" class = submit value = "Confirm" id = "confirm">
+                    <p id ="second_message"></p>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
